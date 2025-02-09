@@ -1,0 +1,22 @@
+.LoginImg{
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+header{
+    background-image: url(https://www.constructionweekonline.com/cloud/2023/06/21/qatar-university.webp) ;
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+#LoginImg{
+    border-radius: 20px;
+    align-items: center;
+}
+
+.form-group{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+}
