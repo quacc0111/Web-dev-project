@@ -1,22 +1,42 @@
-.LoginImg{
-    
+.LoginImg {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-header{
-    background-image: url(https://www.constructionweekonline.com/cloud/2023/06/21/qatar-university.webp) ;
-    background-size:cover;
+
+header {
+    background-image: url(https://www.constructionweekonline.com/cloud/2023/06/21/qatar-university.webp);
+    background-size: cover;
     background-repeat: no-repeat;
 }
-#LoginImg{
+
+#LoginImg {
     border-radius: 20px;
     align-items: center;
 }
 
-.form-group{
+body {
+    background-image: url(https://freefrontend.com/assets/img/css-background-patterns/2024-3d-mini-cubes-tessellated-pattern-pure-css.jpg);
+    background-size: cover;
+    background-repeat: repeat-y;
+    background-position: center;
+}
+
+/* div {
+    /* outline: 2px solid purple;} */
+
+.form-group {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 5px;
+}
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.button {
+    display: flex;
 }
