@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.wallpapersafari.com%2F43%2F42%2FIwWBH3.jpg&f=1&nofb=1&ipt=089ada801b34954707e7db6c925d76b5c451024222c8161afadad85d11fcd5c3&ipo=images);
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sides {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+.rside, .lside {
+    flex: 1; /* Each side takes 50% of the screen */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Right Side */
+.lside {
+    background-color: rgba(255, 0, 0, 0.3); /* Light red overlay */
+    border-right: 2px solid blue;
+    color: black;
+}
+
+/* Left Side */
+.rside {
+    background-color: rgba(0, 0, 255, 0.3); /* Light blue overlay */
+    border-left: 2px solid red;
+    color: black;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 600px) {
+    .sides {
+        flex-direction: column;
+    }
+
+    .rside, .lside {
+        width: 100%;
+        height: 50vh;
+    }
+}
