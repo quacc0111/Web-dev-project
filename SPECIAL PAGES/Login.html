@@ -4,55 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="/CSS/MAIN_THEME.css">
-    <link rel="stylesheet" href="/CSS/Login.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="myStyle.css">
 </head>
 <body>
-    
-    <header >
-        <div class="LoginImg">
 
-                <img src="data:image/jpeg;base64,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" alt="user image" id="LoginImg" width="150px" height="150px" >
-
-        </div>  
-    </header>
-
-   
-    <form action="Login.html" method="post">
-
-    <div class="form-group">
-
-            <label for="Username"></label>
-            <input type="text" name="Username" id="Username" placeholder="enter Username here">
-   
-    </div>
-
-    <div class="form-group">
-
-            <label for="password"> </label>
-            <input type="password" name="password" id="password" placeholder="enter password here">
-    </div>
-
-    <div class="form-group">
-        <div class="buttons">
-
-                <div class="button">
-            <label for="reset"></label>
-            <input type="reset" id="reset" name="reset" value="reset">
-                </div>
-    
-                <div class="button">
-            <label for="Submit"></label>
-            <input type="submit" id="Submit" name="Submit" value="Submit">
-            
-                </div>
-            </div>
+    <div class ="wrapper">
         
+        <form action="">
+            <h1>Login</h1>
 
-        </div>
-    </form>
-    </body>
+            <div class="input-box">
 
+                <input type="text" placeholder="username" required>
+                <i class='bx bxs-user'></i>
 
+            </div>
+
+            <div class="input-box">
+
+                <input type="password" placeholder="password" required>
+                <i class='bx bxs-lock-alt' ></i>
+
+            </div>
+
+            <div class="remember-forgot">
+                <label>
+                    <input type="checkbox"> Remember me
+                    <a href="#">forgot password?</a>
+                </label>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+    </div> 
+    
+</body>
 </html>
- 
