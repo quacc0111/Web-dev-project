@@ -1,0 +1,56 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --bg-color:white;
+    --text-color:black;
+    color-scheme: light;
+}
+.yellow{
+    background-color: yellow;
+}
+.red{
+    background-color: red;
+}
+.blue {
+    background-color: blue;
+}
+.green{
+    background-color: green;
+}
+.container{
+    border: 1px solid black;
+/* display: flex;
+justify-content: space-evenly;
+flex-direction: column; */
+    height: 50vh;
+    margin: 1rem;
+}
+/*learn how to detect diff screen sizes*/
+@media screen and (min-width: 480px) {
+ .container{
+    background-color: gray;
+ }    
+ .green{
+    height: 200px;
+ }
+}
+@media screen and (min-width: 768px) {
+    .container{
+       background-color: pink;
+    }    
+   }
+@media screen and (prefers-color-scheme: dark){
+    :root{
+        color-scheme: dark;
+    }
+
+}
+
+:root:has(#checkbox:checked){
+color-scheme: light;
+}
+/* @media screen and (selected) */
