@@ -1,116 +1,151 @@
+/* ─────────────── COLOR VARIABLES ─────────────── */
+:root {
+    --color-primary-blue: #2563EB;
+    --color-light-blue: #DBEAFE;
+    --color-dark-blue: #1E3A8A;
+
+    --color-primary-orange: #F97316;
+    --color-soft-orange: #dec359;
+
+    --color-bg-light: #F3F4F6;
+    --color-text-dark: #1F2937;
+    --color-text-light: #FFFFFF;
+}
+
 /* ─────────────── GLOBAL STYLES ─────────────── */
 
 body {
-    background-image: url("https://thumbs.dreamstime.com/b/phone-wallpaper-website-red-background-pattern-book-cover-screen-printing-laptop-mobile-visiting-card-115052893.jpg");
+    /* background-image: url("https://papers.co/wallpaper/papers.co-np77-cloud-sky-blue-nature-41-iphone-wallpaper.jpg"); */
     background-size: cover;
-    background-repeat: no-repeat;
+    background-repeat: repeat-y;
     background-position: center;
     height: 100vh;
     margin: 1rem;
+    color: var(--color-text-dark);
+    background-color: var(--color-primary-blue);
 }
 
 /* ─────────────── NAVIGATION BAR ─────────────── */
-nav{
+
+nav {
     display: flex;
-    
-}
-nav ul {
+    background-color: var(--color-dark-blue);
     border-radius: 10px;
-    margin: 1rem;
-    background-color: magenta;
-    gap: 1rem;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+}
+
+nav ul {
     display: flex;
     flex-direction: row-reverse;
     flex-wrap: nowrap;
     list-style: none;
+    margin: 1rem;
+    gap: 1rem;
+    border-radius: 10px;
+}
+
+nav ul li {
+    color: var(--color-text-light);
 }
 
 nav ul li:hover {
     border-radius: 1rem;
-    color: lightblue;
+    color: var(--color-soft-orange);
     transform: scale(1.1);
     transition: all 0.3s ease;
 }
 
-/* ─────────────── MAIN LAYOUT ─────────────── */
+/* ─────────────── PAGE LAYOUT ─────────────── */
 
-.mainbody {
-    border-radius: 5px;
-    background-color: grey;
+.main-layout {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
+    background-color: var(--color-bg-light);
+    border-radius: 5px;
     min-height: fit-content;
 }
 
-.leftside {
+.sidebar {
+    background-color: var(--color-primary-blue);
     border-radius: 5px;
-    background-color: blueviolet;
+    color: var(--color-text-light);
 }
 
-.rightside {
+.content-area { 
+    background-color: var(--color-light-blue);
     border-radius: 5px;
-    background-color: rgb(159, 42, 159);
 }
 
 /* ─────────────── SEARCH BAR ─────────────── */
 
-.search-container {
+.search-bar {
     margin: 1rem;
     display: flex;
     align-items: center;
+    flex-wrap: nowrap;
     border-radius: 25px;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-#search-bar {
+#search-input {
     border: none;
     outline: none;
     font-size: 16px;
     width: 70%;
 }
 
-#searchsubmit {
+#search-button {
     display: flex;
     justify-content: center;
     padding: 10px 20px;
+    width: 40%;
     border: none;
     border-radius: 1rem;
-    background-color: #8fa6bd;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    color: white;
-    cursor: pointer;
+    background-color: var(--color-primary-orange);
+    color: var(--color-text-light);
     font-size: 16px;
-    width: 40%;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-#searchsubmit:hover {
+#search-button:hover {
+    background-color: var(--color-soft-orange);
+    color: var(--color-text-dark);
     transition: background-color 0.3s ease;
 }
 
-/* ─────────────── COURSE CARD / COURSE ROW ─────────────── */
+/* ─────────────── COURSE LIST / CARD ─────────────── */
 
-.coursesmenu {
+.course-list {
     display: flex;
     justify-content: center;
 }
 
 .course-card {
+    margin: 1rem;
     padding: 10px;
-    border-radius: 5px;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: row;
-    overflow-x: auto;
-    min-width: max-content;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.metadata {
+.course-card:hover {
+    border-radius: 1rem;
+    color: var(--color-soft-orange);
+    transform: scale(1.01);
+    transition: all 0.3s ease;
+}
+
+.course-metadata {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -119,35 +154,43 @@ nav ul li:hover {
     gap: 5px;
 }
 
-.metadata > div {
+.course-metadata>div {
     padding-right: 7px;
     border-right: 1px solid #ccc;
-    white-space: nowrap;
 }
 
-.metadata > div:last-child {
+.course-metadata>div:last-child {
     border-right: none;
 }
 
-/* ─────────────── BOTTOM BAR BUTTONS ─────────────── */
+/* ─────────────── BOTTOM BAR / BUTTONS ─────────────── */
 
-.bottombar {
+.bottom-bar {
+    padding-right: 1rem;
+    padding-left: 1rem;
+    margin-bottom: 1rem;
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    flex-wrap: nowrap;
+    gap: 5px;
 }
 
-#btmbtn {
-    border-radius: 5px;
+.bottom-button {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 1rem;
+    border-radius: 5px;
+    background-color: var(--color-primary-orange);
+    color: var(--color-text-light);
+    padding: 0.5rem 1rem;
+    border: none;
+    font-size: 14px;
 }
 
-#btmbtn:hover {
+.bottom-button:hover {
+    background-color: var(--color-soft-orange);
+    color: var(--color-text-dark);
     border-radius: 1rem;
-    color: lightblue;
     transform: scale(1.1);
     transition: all 0.3s ease;
 }
@@ -155,16 +198,24 @@ nav ul li:hover {
 /* ─────────────── RESPONSIVE STYLES ─────────────── */
 
 @media screen and (max-width: 400px) {
-    .mainbody {
-        grid-template-columns: repeat(1, 1fr);
-        grid-template-rows: repeat(1, 2fr);
+    .main-layout {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        justify-items: center; 
+        padding: 1rem;
     }
 
-    .leftside {
+    .content-area {
+        width: 100%;
+        max-width: 500px; 
+    }
+
+    .sidebar {
         display: none;
     }
 
-    .courseother {
+    .course-prereq,
+    .course-other {
         display: none;
     }
 }

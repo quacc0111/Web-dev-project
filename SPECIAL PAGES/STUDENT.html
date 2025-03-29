@@ -12,39 +12,38 @@
   <nav>
     <ul>
       <li>
-        <img src="" alt="">(plcholder img)
+        <img src="" alt="">(placeholder img)
       </li>
-      <li>
-        2
-      </li>
-      <li>
-        3
-      </li>
+      <li>2</li>
+      <li>3</li>
     </ul>
   </nav>
-  <main class="mainbody">
-    <div class="leftside">
+
+  <main class="main-layout">
+    <div class="sidebar">
       dsadsd
     </div>
 
-    <div class="rightside">
-
-      <!-- <h1>here is the student stuff</h1> -->
-      <div class="search-container">
-        <input type="text" id="search-bar" placeholder="Search..." />
-        <button id="searchsubmit" type="submit">Search</button>
-    </div>
-      <div class="coursesmenu">
-        <div id="coursescards"></div>
-
+    <div class="content-area">
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Search..." />
+        <button id="search-button" type="submit">Search</button>
       </div>
-      <div class="bottombar">
-        <button id="btmbtn">not next</button>
-        <button id="btmbtn">next</button>
+
+      <div class="course-list">
+        <div id="coursescards"></div>
+      </div>
+
+      <div class="bottom-bar">
+        <button class="bottom-button">back</button>
+        <button class="bottom-button">remove</button>
+        <button class="bottom-button">add</button>
+        <button class="bottom-button">next</button>
       </div>
     </div>
   </main>
-<script src="/js/student.js"></script>
+
+  <script src="/js/student.js"></script>
 </body>
 
 </html>

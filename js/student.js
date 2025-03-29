@@ -1,34 +1,26 @@
 async function loadPage() {
-  const mainContent = document.getElementById("coursescards");
-
-  const recipecard = document.createElement("div");
-  recipecard.classList.add("container");
-  recipecard.innerHTML = `
-      <div class="course-card">
-        <div class="metadata">
-
-            <div class="coursename">
-                      <p>course name</p>
-
-            </div>
-            <div class="coursedr">
-                      <p>instructors</p>
-            </div>
-            <div class="coursech">
-            CH
-            </div>
-            <div class="coursetime">
-            Time
-            </div>
-            <div class="courseother">
-            ...
-            </div>
-        
+    const mainContent = document.getElementById("coursescards");
+  
+    const response = await fetch("/js/courses.json");
+    const courses = await response.json();
+  
+    courses.forEach(course => {
+      const card = document.createElement("div");
+      card.classList.add("course-card");
+  
+      card.innerHTML = `
+        <div class="course-metadata">
+          <div class="course-name">${course.course_name}</div>
+          <div class="course-instructor">${course.instructor}</div>
+          <div class="course-time">${course.time}</div>
+          <div class="course-other">${course.details}</div>
+          <div class="course-prereq">${course.prerequisites.join(", ") || "None"}</div>
         </div>
-          
-      </div>
-    `;
-
-  mainContent.appendChild(recipecard);
-}
-loadPage();
+      `;
+  
+      mainContent.appendChild(card);
+    });
+  }
+  
+  loadPage();
+  
