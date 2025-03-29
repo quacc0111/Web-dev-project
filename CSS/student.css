@@ -1,26 +1,18 @@
+/* ─────────────── GLOBAL STYLES ─────────────── */
+
 body {
     background-image: url("https://thumbs.dreamstime.com/b/phone-wallpaper-website-red-background-pattern-book-cover-screen-printing-laptop-mobile-visiting-card-115052893.jpg");
     background-size: cover;
-    /* fills the screen */
     background-repeat: no-repeat;
-    /* prevents repeating */
     background-position: center;
     height: 100vh;
     margin: 1rem;
-
-
 }
-#btmbtn:hover{
-    border-radius: 1rem;
-    color: lightblue;
-    transform: scale(1.1); 
-    transition: all 0.3s ease;
-}
-nav ul li:hover{
-    border-radius: 1rem;
-    color: lightblue;
-    transform: scale(1.1); 
-    transition: all 0.3s ease;
+
+/* ─────────────── NAVIGATION BAR ─────────────── */
+nav{
+    display: flex;
+    
 }
 nav ul {
     border-radius: 10px;
@@ -33,21 +25,14 @@ nav ul {
     list-style: none;
 }
 
-.bottombar {
-    display: flex;
-    justify-content: center;
-    gap: 1rem
+nav ul li:hover {
+    border-radius: 1rem;
+    color: lightblue;
+    transform: scale(1.1);
+    transition: all 0.3s ease;
 }
 
- #btmbtn {
-
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 1rem;
-
-}
+/* ─────────────── MAIN LAYOUT ─────────────── */
 
 .mainbody {
     border-radius: 5px;
@@ -60,16 +45,18 @@ nav ul {
     min-height: fit-content;
 }
 
+.leftside {
+    border-radius: 5px;
+    background-color: blueviolet;
+}
+
 .rightside {
     border-radius: 5px;
-
     background-color: rgb(159, 42, 159);
 }
-.search-container{
-    display: flex;
-    flex-wrap: nowrap;
 
-}
+/* ─────────────── SEARCH BAR ─────────────── */
+
 .search-container {
     margin: 1rem;
     display: flex;
@@ -79,6 +66,14 @@ nav ul {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background-color: #fff;
 }
+
+#search-bar {
+    border: none;
+    outline: none;
+    font-size: 16px;
+    width: 70%;
+}
+
 #searchsubmit {
     display: flex;
     justify-content: center;
@@ -92,33 +87,84 @@ nav ul {
     font-size: 16px;
     width: 40%;
 }
-#searchsubmit:hover{
+
+#searchsubmit:hover {
     transition: background-color 0.3s ease;
-
 }
 
-#search-bar {
-    /* padding: 10px 20px; */
-    border: none;
-    outline: none;
-    font-size: 16px;
-    width: 70%; /* Adjust the width as needed */
+/* ─────────────── COURSE CARD / COURSE ROW ─────────────── */
+
+.coursesmenu {
+    display: flex;
+    justify-content: center;
 }
-.leftside {
+
+.course-card {
+    padding: 10px;
     border-radius: 5px;
-
-    background-color: blueviolet;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    min-width: max-content;
 }
+
+.metadata {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.metadata > div {
+    padding-right: 7px;
+    border-right: 1px solid #ccc;
+    white-space: nowrap;
+}
+
+.metadata > div:last-child {
+    border-right: none;
+}
+
+/* ─────────────── BOTTOM BAR BUTTONS ─────────────── */
+
+.bottombar {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+#btmbtn {
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+#btmbtn:hover {
+    border-radius: 1rem;
+    color: lightblue;
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+/* ─────────────── RESPONSIVE STYLES ─────────────── */
 
 @media screen and (max-width: 400px) {
     .mainbody {
         grid-template-columns: repeat(1, 1fr);
         grid-template-rows: repeat(1, 2fr);
-
     }
 
     .leftside {
         display: none;
     }
 
+    .courseother {
+        display: none;
+    }
 }
