@@ -13,6 +13,7 @@ async function loadPage() {
           <div class="course-name">${course.course_name}</div>
           <div class="course-instructor">${course.instructor}</div>
           <div class="course-time">${course.time}</div>
+          <div class="course-credit_hours">${course.credit_hours}CHS</div>
           <div class="course-other">${course.details}</div>
           <div class="course-prereq">${course.prerequisites.join(", ") || "None"}</div>
         </div>

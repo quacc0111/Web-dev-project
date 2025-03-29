@@ -210,20 +210,14 @@ nav ul li:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
 }
-#learning-path{
-    display: none;
-}
 /* ─────────────── RESPONSIVE STYLES ─────────────── */
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 400px) {
     nav ul{
         flex-wrap: wrap;
         flex-direction: column;
         justify-content: center;
         align-content: center;
-    }
-    #learning-path{
-        display: flex;
     }
     .course-metadata{
     

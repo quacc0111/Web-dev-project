@@ -4,6 +4,7 @@
       "prerequisites": ["Introduction to Programming"],
       "instructor": "Dr. Max Pow",
       "time": "12:00 AM - 1:45 AM",
+      "credit_hours": 3,
       "details": "Covers object-oriented principles like classes, inheritance, and polymorphism."
     },
     {
@@ -11,6 +12,7 @@
       "prerequisites": ["Object Oriented Programming"],
       "instructor": "Dr. Jane Byte",
       "time": "2:00 PM - 3:30 PM",
+      "credit_hours": 3,
       "details": "Focuses on linked lists, trees, stacks, and algorithm complexity."
     },
     {
@@ -18,6 +20,7 @@
       "prerequisites": ["Data Structures"],
       "instructor": "Dr. Query Smith",
       "time": "10:00 AM - 11:30 AM",
+      "credit_hours": 3,
       "details": "Learn SQL, ER modeling, and normalization techniques."
     },
     {
@@ -25,6 +28,7 @@
       "prerequisites": ["Object Oriented Programming"],
       "instructor": "Dr. Page Load",
       "time": "4:00 PM - 5:30 PM",
+      "credit_hours": 4,
       "details": "HTML, CSS, JavaScript, and client-server architecture."
     },
     {
@@ -32,6 +36,7 @@
       "prerequisites": ["Data Structures", "Computer Architecture"],
       "instructor": "Dr. Kernel Hart",
       "time": "9:00 AM - 10:45 AM",
+      "credit_hours": 4,
       "details": "Memory management, process scheduling, and file systems."
     }
   ]
