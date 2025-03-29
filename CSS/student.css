@@ -213,6 +213,7 @@ nav ul li:hover {
 #learning-path{
     display: none;
 }
+
 /* ─────────────── RESPONSIVE STYLES ─────────────── */
 
 @media screen and (max-width: 500px) {
