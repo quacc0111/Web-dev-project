@@ -1,28 +1,53 @@
 *{
     margin: 0rem;
     padding: 0rem;}
-
+    :root {
+        --color-primary-blue: #2563EB;
+        --color-light-blue: #DBEAFE;
+        --color-dark-blue: #1E3A8A;
+    
+        --color-primary-orange: #F97316;
+        --color-soft-orange: #dec359;
+    
+        --color-bg-light: #F3F4F6;
+        --color-text-dark: #1F2937;
+        --color-text-light: #FFFFFF;
+    }
+    
 body{
     display: flex;
     justify-content: center;
     background-size: cover;
     background: url('i4.webp') no-repeat center center fixed;
     height: 100vh;
-background-position: center;}
+background-position: center;
+background-color: var(--color-primary-blue);
 
+}
+.user-icon-div{
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+}
+#user-icon{
+    width: 5rem;
+}
 .wrapper{
     display: flex;
     justify-content: center;
+    align-content: center;
     align-items: center;
-    background-color: transparent
+    background-color: var(--color-light-blue);
     width: 400px;
     height: 200px;
-    padding: 2rem;
-    border: 1px solid rgb(22, 157, 214);
+    padding: 3rem;
     border-radius: 10px;
-    margin-top: 10vh;}   
+    margin-top: 5rem;
+    color: var(--color-text-dark);
+}
 .wrapper h1{
-    color: rgb(233, 237, 239);
+    color: var(--color-text-dark);
+
     font-size: 1.5rem;
     font-family: 'Arial', sans-serif;
     font-weight: bold;

@@ -1,7 +1,7 @@
 async function loadPage() {
     const mainContent = document.getElementById("coursescards");
   
-    const response = await fetch("/js/courses.json");
+    const response = await fetch("/json/courses.json");
     const courses = await response.json();
   
     courses.forEach(course => {

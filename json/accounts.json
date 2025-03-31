@@ -1,0 +1,39 @@
+{
+    "admin": [
+      {
+        "username": "ad001",
+        "name": "Alice Root",
+        "password": "adminpass123"
+      },
+      {
+        "username": "ad002",
+        "name": "Bob System",
+        "password": "secureadmin456"
+      }
+    ],
+    "instructor": [
+      {
+        "username": "in001",
+        "name": "Dr. Max Pow",
+        "password": "teachOOP789"
+      },
+      {
+        "username": "in002",
+        "name": "Dr. Page Load",
+        "password": "html4life"
+      }
+    ],
+    "student": [
+      {
+        "username": "st001",
+        "name": "John Doe",
+        "password": "password123"
+      },
+      {
+        "username": "st002",
+        "name": "Jane Smith",
+        "password": "qwerty456"
+      }
+    ]
+  }
+  
