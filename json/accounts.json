@@ -1,39 +1,70 @@
 {
-    "admin": [
-      {
-        "username": "ad001",
-        "name": "Alice Root",
-        "password": "adminpass123"
-      },
-      {
-        "username": "ad002",
-        "name": "Bob System",
-        "password": "secureadmin456"
-      }
-    ],
-    "instructor": [
-      {
-        "username": "in001",
-        "name": "Dr. Max Pow",
-        "password": "teachOOP789"
-      },
-      {
-        "username": "in002",
-        "name": "Dr. Page Load",
-        "password": "html4life"
-      }
-    ],
-    "student": [
-      {
-        "username": "st001",
-        "name": "John Doe",
-        "password": "password123"
-      },
-      {
-        "username": "st002",
-        "name": "Jane Smith",
-        "password": "qwerty456"
-      }
-    ]
-  }
-  
+  "admin": [
+    {
+      "username": "ad001",
+      "name": "Alice Root",
+      "password": "adminpass123"
+    },
+    {
+      "username": "ad002",
+      "name": "Bob System",
+      "password": "secureadmin456"
+    }
+  ],
+  "instructor": [
+    {
+      "username": "in001",
+      "name": "Dr. Max Pow",
+      "password": "teachOOP789",
+      "current_courses": ["CS202", "CS204"]
+    },
+    {
+      "username": "in002",
+      "name": "Dr. Page Load",
+      "password": "html4life",
+      "current_courses": ["CS301", "CS315"]
+    }
+  ],
+  "student": [
+    {
+      "username": "st001",
+      "name": "John Doe",
+      "password": "password123",
+      "current_courses": ["CS202", "CS301"],
+      "past_courses": [
+        {
+          "course_id": "CS101",
+          "course_name": "Introduction to Programming",
+          "grade": "B+",
+          "status": "Passed"
+        },
+        {
+          "course_id": "ENG101",
+          "course_name": "English Composition",
+          "grade": "C",
+          "status": "Passed"
+        }
+      ]
+    },
+    {
+      "username": "st002",
+      "name": "Jane Smith",
+      "password": "qwerty456",
+      "current_courses": ["CS401", "CS305"],
+      "past_courses": [
+        {
+          "course_id": "CS202",
+          "course_name": "Object Oriented Programming",
+          "grade": "A",
+          "status": "Passed"
+        },
+        {
+          "course_id": "MATH210",
+          "course_name": "Linear Algebra",
+          "grade": "F",
+          "status": "Failed"
+        }
+      ]
+    }
+  ]
+}
