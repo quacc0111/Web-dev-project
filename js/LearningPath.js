@@ -281,10 +281,13 @@ async function loadLearningPath() {
         icon = "❌";
         break;
     }
-
-    card.innerHTML = `<strong>${icon} ${course.title}</strong>`;
+    if(course.status==="completed")
+      card.innerHTML = `<strong>${icon} ${course.title} |${course.grade} </strong>`;
+else{
+    card.innerHTML = `<strong>${icon} ${course.title}</strong>`;}
     container.appendChild(card);
-  });
+  }
+);
 }
 
 function checkSidebarAndLoad() {
