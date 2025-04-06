@@ -54,5 +54,8 @@ async function checklogin(e) {
       window.location.replace("/SPECIAL PAGES/STUDENT.html");
     }
   }
+  else{
+    alert("incorrect username/password")
+  }
   
 }

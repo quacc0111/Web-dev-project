@@ -4,8 +4,6 @@ const registerButton = document.getElementById("register_button");
 
 let selected_course;
 
-searchButton.addEventListener("click", search);
-registerButton.addEventListener("click", registerCourse);
 
 function isWithinRange(start1, end1, start2, end2) {
   return start1 < end2 && start2 < end1;
@@ -19,19 +17,6 @@ async function fetchCourses() {
 async function fetchLearningPath() {
   const response = await fetch("/json/learningPath.json");
   return response.json();
-}
-
-async function getUserData() {
-  const storedData = localStorage.getItem("loggedUser");
-  if (!storedData) {
-    window.location.href = "/SPECIAL PAGES/login.html";
-  }
-  return JSON.parse(storedData);
-}
-
-async function getCourseByID(course_id) {
-  const courses = await fetchCourses();
-  return courses.find(course => course.course_id === course_id);
 }
 
 function createCourseCard(course) {
@@ -60,7 +45,6 @@ function createCourseCard(course) {
 async function loadPage() {
   const mainContent = document.getElementById("coursescards");
   const courses = await fetchCourses();
-
   mainContent.innerHTML = "";
 
   courses
@@ -110,6 +94,19 @@ function handleCourseSelection(course) {
   console.log("Selected course:", course);
 }
 
+async function getUserData() {
+  const storedData = localStorage.getItem("loggedUser");
+  if (!storedData) {
+    window.location.href = "/SPECIAL PAGES/login.html";
+  }
+  return JSON.parse(storedData);
+}
+
+async function getCourseByID(course_id) {
+  const courses = await fetchCourses();
+  return courses.find(course => course.course_id === course_id);
+}
+
 async function registerCourse() {
   const userData = await getUserData();
   const userInfo = userData.info;
@@ -146,6 +143,7 @@ async function registerCourse() {
 
   if (unclearedPrereqs.length > 0) {
     console.log("Some prerequisites are not passed — registration blocked.");
+    console.log("Uncleared prerequisites:", unclearedPrereqs);
     alert("You are missing the following prerequisite(s):\n- " + unclearedPrereqs.join("\n- "));
     return;
   }
@@ -155,13 +153,17 @@ async function registerCourse() {
   for (const courseID of userInfo.current_courses) {
     const course = await getCourseByID(courseID);
 
-    if (course && isWithinRange(selected_course.time_start, selected_course.time_end, course.time_start, course.time_end)) {
-      selected_course.days.forEach(day => {
-        if (course.days.includes(day)) {
-          noconflict = false;
-          console.log("conflict with", course, day);
-        }
-      });
+    if (course !== undefined) {
+      if (isWithinRange(selected_course.time_start, selected_course.time_end, course.time_start, course.time_end)) {
+        selected_course.days.forEach(day => {
+          if (course.days.includes(day)) {
+            noconflict = false;
+            console.log("conflict with", course, day);
+          }
+        });
+      }
+    } else {
+      console.log("couldn't find course with ID:", courseID);
     }
   }
 
@@ -257,27 +259,36 @@ async function loadLearningPath() {
       status: "cant_take"
     });
   });
+
   const container = document.getElementById("learning-path-course-cards");
+
   learningPath.forEach(course => {
     const card = document.createElement("div");
     card.className = `course-card ${course.status}`;
 
     let icon = "";
     switch (course.status) {
-      case "completed": icon = "✔️"; break;
-      case "taking": icon = "⏳"; break;
-      case "cantake": icon = "➕"; break;
-      case "cant_take": icon = "❌"; break;
+      case "completed":
+        icon = "✔️";
+        break;
+      case "taking":
+        icon = "⏳";
+        break;
+      case "cantake":
+        icon = "➕";
+        break;
+      case "cant_take":
+        icon = "❌";
+        break;
     }
 
-    card.innerHTML = `<strong>${icon} | ${course.title} | ${course.ID}</strong>`;
+    card.innerHTML = `<strong>${icon} ${course.title}</strong>`;
     container.appendChild(card);
   });
 }
 
 function checkSidebarAndLoad() {
-  const sidebar = document.querySelector(".sidebar");
-  const isVisible = window.innerWidth > 800 && getComputedStyle(sidebar).display !== "none";
+  const isVisible = true;
   if (isVisible) {
     loadLearningPath();
   }
@@ -285,4 +296,5 @@ function checkSidebarAndLoad() {
 
 window.addEventListener("load", checkSidebarAndLoad);
 window.addEventListener("resize", checkSidebarAndLoad);
+
 loadPage();

@@ -1,0 +1,48 @@
+{
+    "CS101": {
+      "title": "Introduction to Programming",
+      "prerequisites": [],
+      "category": "Programming"
+    },
+    "CS201-A": {
+      "title": "Object Oriented Programming",
+      "prerequisites": ["CS101"],
+      "category": "Programming"
+    },
+    "CS202": {
+      "title": "Data Structures",
+      "prerequisites": ["CS201-A"],
+      "category": "Programming"
+    },
+    "CS220": {
+      "title": "Algorithms",
+      "prerequisites": ["CS202"],
+      "category": "Programming"
+    },
+    "CS230": {
+      "title": "Computer Architecture",
+      "prerequisites": ["CS101"],
+      "category": "Systems"
+    },
+    "CS301": {
+      "title": "Database Systems",
+      "prerequisites": ["CS202"],
+      "category": "Databases"
+    },
+    "CS330": {
+      "title": "Web Development",
+      "prerequisites": ["CS201-A"],
+      "category": "Web Development"
+    },
+    "CS350": {
+      "title": "Advanced Front-End Development",
+      "prerequisites": ["CS330"],
+      "category": "Web Development"
+    },
+    "CS400": {
+      "title": "Software Engineering",
+      "prerequisites": ["CS220", "CS301"],
+      "category": "Engineering"
+    }
+  }
+  

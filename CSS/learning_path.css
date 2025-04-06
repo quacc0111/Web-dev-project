@@ -19,71 +19,23 @@
     background-color: var(--color-primary-blue);
   }
   
-  nav {
-    display: flex;
-    justify-content: flex-end;
-    background-color: var(--color-dark-blue);
-    border-radius: 10px;
-    margin-bottom: 1rem;
-    padding: 0.5rem 1rem;
-  }
-  
-  nav ul {
-    display: flex;
-    flex-direction: row-reverse;
-    gap: 1rem;
-    list-style: none;
-    margin: 1rem;
-  }
-  
-  nav ul li {
-    color: var(--color-text-light);
-  }
-  
-  nav ul li:hover {
-    color: var(--color-soft-orange);
-    transform: scale(1.1);
-    transition: all 0.3s ease;
-  }
-  
-  nav a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  nav a:visited {
-    color: white;
-  }
-  
-  nav a:hover {
-    color: var(--color-soft-orange);
-    text-decoration: underline;
-  }
-  
-  
-  .main-layout {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1fr;
-    grid-column-gap: 10px;
-    background-color: transparent;
-    border-radius: 5px;
-    min-height: fit-content;
-  }
-  
-  .sidebar {
-    background-color: var(--color-light-blue);
-    border-radius: 5px;
-  }
-  
   .title_learningPath {
     display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
     justify-content: center;
     border-radius: 25px;
     margin: 1rem;
     overflow: hidden;
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .title_learningPath a {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
   }
   
   .learning-path-content {
@@ -94,6 +46,20 @@
     overflow: hidden;
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  a {
+    color: var(--color-dark-blue);
+    text-decoration: none;
+  }
+  
+  a:visited {
+    color: var(--color-dark-blue);
+  }
+  
+  a:hover {
+    color: var(--color-soft-orange);
+    text-decoration: underline;
   }
   
   .content-area {
@@ -202,7 +168,8 @@
   }
   
   .bottom-bar {
-    padding: 0 1rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
     margin-bottom: 1rem;
     display: flex;
     justify-content: center;
@@ -230,95 +197,24 @@
     transition: all 0.3s ease;
   }
   
-  #catagories {
-    background-color: var(--color-bg-light);
-    border-radius: 5px;
+  #learning-path {
+    display: flex;
+  }
+  
+  .course-metadata {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    gap: 8px;
+  }
+  
+  .main-layout {
     display: flex;
     justify-content: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
-  #learning-path {
+  .course-prereq,
+  .course-other {
     display: none;
-  }
-  
-  @media screen and (max-width: 500px) {
-    nav {
-      flex-wrap: nowrap;
-      justify-content: center;
-      align-content: center;
-    }
-  
-    nav ul {
-      flex-wrap: nowrap;
-      flex-direction: column;
-      justify-content: center;
-      align-content: center;
-    }
-  
-    #learning-path {
-      display: flex;
-    }
-  
-    .course-metadata {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: repeat(1, 1fr);
-      gap: 8px;
-    }
-  
-    .main-layout {
-      display: flex;
-      justify-content: center;
-    }
-  
-    .sidebar {
-      display: none;
-    }
-  
-    .course-prereq,
-    .course-other {
-      display: none;
-    }
-  }
-  
-  @media screen and (max-width: 800px) {
-    nav {
-      flex-wrap: nowrap;
-      justify-content: center;
-      align-content: center;
-    }
-  
-    nav ul {
-      flex-wrap: nowrap;
-      flex-direction: column;
-      justify-content: center;
-      align-content: center;
-    }
-  
-    #learning-path {
-      display: flex;
-    }
-  
-    .course-metadata {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: repeat(1, 1fr);
-      gap: 8px;
-    }
-  
-    .main-layout {
-      display: flex;
-      justify-content: center;
-    }
-  
-    .sidebar {
-      display: none;
-    }
-  
-    .course-prereq,
-    .course-other {
-      display: none;
-    }
   }
   
