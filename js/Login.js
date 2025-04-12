@@ -1,69 +1,44 @@
-let LoginBTN = document.getElementById("LoginBTN");
-let Usernamefield = document.getElementById("username-field");
-let Passwordfield = document.getElementById("password-field");
-let formsubmission = document.getElementById("form");
+const loginBtn      = document.getElementById("LoginBTN");
+const usernameField = document.getElementById("username-field");
+const passwordField = document.getElementById("password-field");
 
-LoginBTN.addEventListener("click", checklogin);
+loginBtn.addEventListener("click", handleLogin);
 
 async function seedStorage() {
-  async function putIfAbsent(key, src) {
+  async function put(key, url) {
     if (localStorage.getItem(key)) return;
-    const res = await fetch(src);
-    if (!res.ok) throw new Error(`Could not load ${src}`);
-    const data = await res.json();
-    localStorage.setItem(key, JSON.stringify(data));
+    const res = await fetch(url);
+    if (!res.ok) throw new Error();
+    localStorage.setItem(key, JSON.stringify(await res.json()));
   }
-
-  await putIfAbsent("coursesData", "/json/courses.json");
-  await putIfAbsent("userAccounts", "/json/accounts.json");
-  await putIfAbsent("defaultPathChart", "/json/learningPath.json");
+  await put("coursesData", "/json/courses.json");
+  await put("userAccounts", "/json/accounts.json");
+  await put("defaultPathChart", "/json/learningPath.json");
 }
 
-async function checklogin(e) {
+function getAccounts() {
+  return JSON.parse(localStorage.getItem("userAccounts") || "{}");
+}
+
+async function handleLogin(e) {
   e.preventDefault();
+  try { await seedStorage(); } catch { alert("Data init failed"); return; }
 
-  let accounts = JSON.parse(localStorage.getItem("accounts"));
-  if (!accounts) {
-    const response = await fetch("/json/accounts.json");
-    accounts = await response.json();
-    localStorage.setItem("accounts", JSON.stringify(accounts));
-  }
+  const accounts = getAccounts();
+  const u = usernameField.value.trim();
+  const p = passwordField.value.trim();
+  const role = u.startsWith("ad") ? "admin" : u.startsWith("in") ? "instructor" : u.startsWith("st") ? "student" : "";
 
-  const username = Usernamefield.value.trim();
-  const password = Passwordfield.value.trim();
+  if (!role) { alert("Username or password was incorrect"); return; }
 
-  let role = "";
-  if (username.startsWith("ad")) role = "admin";
-  else if (username.startsWith("in")) role = "instructor";
-  else if (username.startsWith("st")) role = "student";
+  const match = (accounts[role] || []).find(a => a.username === u && a.password === p);
+  if (!match) { alert("Incorrect username/password"); return; }
 
-  if (role === "") {
-    alert("Username or password was incorrect");
-    return;
-  }
+  localStorage.setItem("loggedUser", JSON.stringify({ role, info: { ...match } }));
 
-  const userList = accounts[role];
-  const index = userList.findIndex(
-    (user) => user.username === username && user.password === password
+  window.location.replace(
+    role === "admin" ? "/SPECIAL PAGES/Admin.html" :
+    role === "instructor" ? "/SPECIAL PAGES/Instructor.html" :
+    "/SPECIAL PAGES/STUDENT.html"
   );
-  const found = index !== -1 ? accounts[role][index] : null;
-
-  if (!found) {
-    alert("Incorrect username/password");
-    return;
-  }
-
-  const userData = {
-    role: role,
-    info: JSON.parse(JSON.stringify(found))
-  };
-  localStorage.setItem("loggedUser", JSON.stringify(userData));
-
-  if (role === "admin") {
-    window.location.replace("/SPECIAL PAGES/Admin.html");
-  } else if (role === "instructor") {
-    window.location.replace("/SPECIAL PAGES/Instructor.html");
-  } else {
-    window.location.replace("/SPECIAL PAGES/STUDENT.html");
-  }
 }
