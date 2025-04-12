@@ -189,11 +189,11 @@ async function registerCourse() {
   }
 
   const accounts = JSON.parse(localStorage.getItem("accounts"));
-  const username = userData.info.username;          // or destructure
+  const username = userData.info.username;
   const studentIndex = accounts.student.findIndex(
     s => s.username === username
   );
-    if (studentIndex !== -1) {
+  if (studentIndex !== -1) {
     if (!accounts.student[studentIndex].current_courses.includes(selected_course.course_id)) {
       accounts.student[studentIndex].current_courses.push(selected_course.course_id);
     }
@@ -235,11 +235,11 @@ async function removeCourse() {
   userInfo.current_courses.splice(courseIndexToRemove, 1);
 
   const accounts = JSON.parse(localStorage.getItem("accounts"));
-  const username = userData.info.username;          // or destructure
+  const username = userData.info.username;
   const studentIndex = accounts.student.findIndex(
     s => s.username === username
   );
-    if (studentIndex !== -1) {
+  if (studentIndex !== -1) {
     const accountCourseIndex = accounts.student[studentIndex].current_courses.indexOf(selected_course.course_id);
     if (accountCourseIndex !== -1) {
       accounts.student[studentIndex].current_courses.splice(accountCourseIndex, 1);

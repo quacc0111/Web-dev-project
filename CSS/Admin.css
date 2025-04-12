@@ -1,4 +1,5 @@
-/* ─────────────── COLOR VARIABLES ─────────────── */
+
+
 :root {
     --color-primary-blue: #2563EB;
     --color-light-blue: #DBEAFE;
@@ -11,11 +12,14 @@
     --color-text-dark: #1F2937;
     --color-text-light: #FFFFFF;
 }
-
-/* ─────────────── GLOBAL STYLES ─────────────── */
+li #img{
+    display: flex;
+    justify-content: center;
+    width: 3rem;
+    
+  }
 
 body {
-    /* background-image: url("https://thumbs.dreamstime.com/b/phone-wallpaper-website-red-background-pattern-book-cover-screen-printing-laptop-mobile-visiting-card-115052893.jpg"); */
     background-size: cover;
     background-repeat: repeat-y;
     background-position: center;
@@ -25,7 +29,6 @@ body {
     background-color: var(--color-primary-blue);
 }
 
-/* ─────────────── NAVIGATION BAR ─────────────── */
 
 nav {
     display: flex;
@@ -63,20 +66,22 @@ nav ul li:hover {
     transition: all 0.3s ease;
 }
 
-/* ─────────────── PAGE LAYOUT ─────────────── */
 
 .main-layout {
     display: grid;
+    gap: 1rem;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
-    background-color: var(--color-bg-light);
+    background-color: transparent;
     border-radius: 5px;
     min-height: fit-content;
 }
 
 .sidebar {
+    gap: 1rem;
+    margin: 1rem;
     background-color: var(--color-primary-blue);
     border-radius: 5px;
     color: var(--color-text-light);
@@ -87,7 +92,7 @@ nav ul li:hover {
     border-radius: 5px;
 }
 
-/* ─────────────── SEARCH BAR ─────────────── */
+
 
 .search-bar {
     margin: 1rem;
@@ -99,7 +104,30 @@ nav ul li:hover {
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
+.add‑course‑form {
+    display:grid;
+    gap:0.75rem;
+    max-width:500px;
+  }
+  .add‑course‑form label,
+  .add‑course‑form fieldset {
+    display:flex;
+    flex-direction:column;
+    font-size:0.9rem;
+  }
+  .add‑course‑form input,
+  .add‑course‑form textarea,
+  .add‑course‑form select {
+    padding:0.4rem;
+    border:1px solid #ccc;
+    border-radius:4px;
+  }
+  .add‑course‑form .form‑buttons {
+    display:flex;
+    gap:1rem;
+    margin-top:0.5rem;
+  }
+  
 #search-input {
     border: none;
     outline: none;
@@ -127,7 +155,6 @@ nav ul li:hover {
     transition: background-color 0.3s ease;
 }
 
-/* ─────────────── COURSE LIST / CARD ─────────────── */
 
 .course-list {
     display: flex;
@@ -156,11 +183,13 @@ nav ul li:hover {
 .course-metadata > div {
     padding-right: 7px;
     border-right: 1px solid #ccc;
+    
 }
 
 .course-metadata > div:last-child {
     border-right: none;
 }  
+
 
 .course-metadata{
     
@@ -171,7 +200,6 @@ nav ul li:hover {
     
 }
 
-/* ─────────────── BOTTOM BAR / BUTTONS ─────────────── */
 
 .bottom-bar {
     padding-right: 1rem;
@@ -202,6 +230,9 @@ nav ul li:hover {
     transform: scale(1.1);
     transition: all 0.3s ease;
 }
+
+
+
 #catagories{
     background-color: var(--color-bg-light);
     border-radius: 5px;
@@ -213,8 +244,21 @@ nav ul li:hover {
 #learning-path{
     display: none;
 }
-
-/* ─────────────── RESPONSIVE STYLES ─────────────── */
+nav a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  nav a:visited {
+    color: white;
+  }
+  
+  nav a:hover {
+    color: var(--color-soft-orange);
+    text-decoration: underline;
+  }
+  
+  
 
 @media screen and (max-width: 500px) {
     nav{
@@ -248,7 +292,7 @@ nav ul li:hover {
         display: none;
     }
 
-    .course-prereq,
+    .course-prereq,.course-status,
     .course-other {
         display: none;
     }

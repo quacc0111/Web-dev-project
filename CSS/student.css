@@ -8,7 +8,12 @@
     --color-text-dark: #1F2937;
     --color-text-light: #FFFFFF;
   }
-  
+  li #img{
+    display: flex;
+    justify-content: center;
+    width: 3rem;
+    
+  }
   body {
     background-size: cover;
     background-repeat: repeat-y;

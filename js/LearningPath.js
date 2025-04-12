@@ -4,7 +4,6 @@ const registerButton = document.getElementById("register_button");
 
 let selected_course;
 
-
 function isWithinRange(start1, end1, start2, end2) {
   return start1 < end2 && start2 < end1;
 }
@@ -270,19 +269,19 @@ async function loadLearningPath() {
     let icon = "";
     switch (course.status) {
       case "completed": icon = "✔️"; break;
-      case "failed":    icon = "❌"; break;
-      case "taking":    icon = "⏳"; break;
-      case "cantake":   icon = "➕"; break;
+      case "failed": icon = "❌"; break;
+      case "taking": icon = "⏳"; break;
+      case "cantake": icon = "➕"; break;
       case "cant_take": icon = "🚫"; break;
     }
-    
-    if(course.status==="completed")
+
+    if (course.status === "completed")
       card.innerHTML = `<strong>${icon} ${course.title} |${course.grade} </strong>`;
-else{
-    card.innerHTML = `<strong>${icon} ${course.title}</strong>`;}
+    else {
+      card.innerHTML = `<strong>${icon} ${course.title}</strong>`;
+    }
     container.appendChild(card);
-  }
-);
+  });
 }
 
 function checkSidebarAndLoad() {
