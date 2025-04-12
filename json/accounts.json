@@ -1,30 +1,22 @@
 {
   "admin": [
-    {
-      "username": "ad001",
-      "name": "Alice Root",
-      "password": "adminpass123"
-    },
-    {
-      "username": "ad002",
-      "name": "Bob System",
-      "password": "secureadmin456"
-    }
+    { "username": "ad001", "name": "Alice Root", "password": "adminpass123" },
+    { "username": "ad002", "name": "Bob System", "password": "secureadmin456" }
   ],
+
   "instructor": [
-    {
-      "username": "in001",
-      "name": "Dr. Max Pow",
-      "password": "teachOOP789",
-      "current_courses": ["CS202", "CS204"]
-    },
-    {
-      "username": "in002",
-      "name": "Dr. Page Load",
-      "password": "html4life",
-      "current_courses": ["CS301", "CS315"]
-    }
+    { "username": "in001", "name": "Dr. Max Pow",      "password": "teachOOP789", "current_courses": ["CS201-A"] },
+    { "username": "in002", "name": "Dr. Page Load",    "password": "html4life",   "current_courses": ["CS330"]   },
+    { "username": "in003", "name": "Dr. Jane Byte",    "password": "datas4life",  "current_courses": ["CS202"]   },
+    { "username": "in004", "name": "Dr. Query Smith",  "password": "sqlMaster!",  "current_courses": ["CS301"]   },
+    { "username": "in006", "name": "Dr. Alan Logic",   "password": "pyth0n101",   "current_courses": ["CS101"]   },
+    { "username": "in007", "name": "Dr. Al Go Rithm",  "password": "divide&conq", "current_courses": ["CS220"]   },
+    { "username": "in008", "name": "Dr. Chip Core",    "password": "h4rdware",    "current_courses": ["CS230"]   },
+    { "username": "in009", "name": "Dr. Vue Angular",  "password": "frontend++",  "current_courses": ["CS350"]   },
+    { "username": "in011", "name": "Dr. Secure Bit",   "password": "encryptMe",   "current_courses": ["CS410"]   },
+    { "username": "in012", "name": "Dr. Neural Net",   "password": "mlforall",    "current_courses": ["CS420"]   }
   ],
+
   "student": [
     {
       "username": "st001",
@@ -32,38 +24,71 @@
       "password": "password123",
       "current_courses": ["CS202", "CS301"],
       "past_courses": [
-        {
-          "course_id": "CS101",
-          "course_name": "Introduction to Programming",
-          "grade": "B+",
-          "status": "Passed"
-        },
-        {
-          "course_id": "ENG101",
-          "course_name": "English Composition",
-          "grade": "C",
-          "status": "Passed"
-        }
+        { "course_id": "CS101",  "course_name": "Introduction to Programming", "grade": "B+", "status": "Passed" },
+        { "course_id": "CS201-A","course_name": "Object Oriented Programming",  "grade": "B",  "status": "Passed" }
       ]
     },
     {
       "username": "st002",
       "name": "Jane Smith",
       "password": "qwerty456",
-      "current_courses": ["CS401", "CS305"],
+      "current_courses": ["CS202", "CS301"],
       "past_courses": [
-        {
-          "course_id": "CS202",
-          "course_name": "Object Oriented Programming",
-          "grade": "A",
-          "status": "Passed"
-        },
-        {
-          "course_id": "MATH210",
-          "course_name": "Linear Algebra",
-          "grade": "F",
-          "status": "Failed"
-        }
+        { "course_id": "CS101",  "course_name": "Introduction to Programming", "grade": "B",  "status": "Passed" },
+        { "course_id": "CS201-A","course_name": "Object Oriented Programming",  "grade": "A",  "status": "Passed" }
+      ]
+    },
+    {
+      "username": "st003",
+      "name": "Sam Lee",
+      "password": "letmein789",
+      "current_courses": ["CS201-A", "CS330"],
+      "past_courses": [
+        { "course_id": "CS101", "course_name": "Introduction to Programming", "grade": "A-", "status": "Passed" }
+      ]
+    },
+    {
+      "username": "st004",
+      "name": "Alex Kim",
+      "password": "ilovecats",
+      "current_courses": ["CS230", "CS330"],
+      "past_courses": [
+        { "course_id": "CS101",  "course_name": "Introduction to Programming", "grade": "B",  "status": "Passed" },
+        { "course_id": "CS201-A","course_name": "Object Oriented Programming",  "grade": "B+", "status": "Passed" }
+      ]
+    },
+    {
+      "username": "st005",
+      "name": "Maria Perez",
+      "password": "securepwd",
+      "current_courses": ["CS301"],
+      "past_courses": [
+        { "course_id": "CS101",  "course_name": "Introduction to Programming", "grade": "A",  "status": "Passed" },
+        { "course_id": "CS201-A","course_name": "Object Oriented Programming",  "grade": "A-", "status": "Passed" },
+        { "course_id": "CS202",  "course_name": "Data Structures",             "grade": "B+", "status": "Passed" },
+        { "course_id": "CS330",  "course_name": "Web Development",             "grade": "A-", "status": "Passed" }
+      ]
+    },
+    {
+      "username": "st006",
+      "name": "Liam Wong",
+      "password": "dragon123",
+      "current_courses": ["CS220", "CS350"],
+      "past_courses": [
+        { "course_id": "CS101",  "course_name": "Introduction to Programming", "grade": "B",  "status": "Passed" },
+        { "course_id": "CS201-A","course_name": "Object Oriented Programming",  "grade": "B",  "status": "Passed" },
+        { "course_id": "CS202",  "course_name": "Data Structures",             "grade": "B+", "status": "Passed" },
+        { "course_id": "CS330",  "course_name": "Web Development",             "grade": "B",  "status": "Passed" }
+      ]
+    },
+    {
+      "username": "st007",
+      "name": "Noah Patel",
+      "password": "ilovecode",
+      "current_courses": ["CS202"],
+      "past_courses": [
+        { "course_id": "CS101",  "course_name": "Introduction to Programming", "grade": "A-", "status": "Passed" },
+        { "course_id": "CS201-A","course_name": "Object Oriented Programming",  "grade": "B",  "status": "Passed" }
       ]
     }
   ]

@@ -1,24 +1,46 @@
 const searchInput = document.getElementById("search-input");
 const searchButton = document.getElementById("search-button");
 const registerButton = document.getElementById("register_button");
+const remove_button = document.getElementById("remove_button");
 
 let selected_course;
 
 searchButton.addEventListener("click", search);
 registerButton.addEventListener("click", registerCourse);
+remove_button.addEventListener("click", removeCourse);
+
+async function initializeLocalStorageIfNeeded() {
+  if (!localStorage.getItem("courses")) {
+    const coursesRes = await fetch("/json/courses.json");
+    const coursesData = await coursesRes.json();
+    localStorage.setItem("courses", JSON.stringify(coursesData));
+  }
+
+  if (!localStorage.getItem("learningPath")) {
+    const pathRes = await fetch("/json/learningPath.json");
+    const pathData = await pathRes.json();
+    localStorage.setItem("learningPath", JSON.stringify(pathData));
+  }
+
+  if (!localStorage.getItem("accounts")) {
+    const accountsRes = await fetch("/json/accounts.json");
+    const accountsData = await accountsRes.json();
+    localStorage.setItem("accounts", JSON.stringify(accountsData));
+  }
+}
 
 function isWithinRange(start1, end1, start2, end2) {
   return start1 < end2 && start2 < end1;
 }
 
-async function fetchCourses() {
-  const response = await fetch("/json/courses.json");
-  return response.json();
+function fetchCourses() {
+  const storedCourses = localStorage.getItem("courses");
+  return storedCourses ? JSON.parse(storedCourses) : [];
 }
 
-async function fetchLearningPath() {
-  const response = await fetch("/json/learningPath.json");
-  return response.json();
+function fetchLearningPath() {
+  const storedPath = localStorage.getItem("learningPath");
+  return storedPath ? JSON.parse(storedPath) : {};
 }
 
 async function getUserData() {
@@ -29,8 +51,8 @@ async function getUserData() {
   return JSON.parse(storedData);
 }
 
-async function getCourseByID(course_id) {
-  const courses = await fetchCourses();
+function getCourseByID(course_id) {
+  const courses = fetchCourses();
   return courses.find(course => course.course_id === course_id);
 }
 
@@ -121,21 +143,16 @@ async function registerCourse() {
   }
 
   if (userInfo.current_courses.includes(selected_course.course_id)) {
-    console.log("This course is already being taken.");
+    alert("You are already registered in this course.");
     return;
   }
 
   if (selected_course.enrolled >= selected_course.capacity) {
-    console.log("Course capacity is full. Please choose another one.");
+    alert("Course is full.");
     return;
   }
 
   const prerequisites = selected_course.prerequisites;
-
-  if (prerequisites.length === 0) {
-    console.log("No prerequisites required — course can be registered.");
-    return;
-  }
 
   const unclearedPrereqs = prerequisites.filter(prereq => {
     const match = userPastCourses.find(past =>
@@ -145,29 +162,107 @@ async function registerCourse() {
   });
 
   if (unclearedPrereqs.length > 0) {
-    console.log("Some prerequisites are not passed — registration blocked.");
     alert("You are missing the following prerequisite(s):\n- " + unclearedPrereqs.join("\n- "));
     return;
   }
 
-  let noconflict = true;
-
+  let noConflict = true;
   for (const courseID of userInfo.current_courses) {
-    const course = await getCourseByID(courseID);
-
+    const course = getCourseByID(courseID);
     if (course && isWithinRange(selected_course.time_start, selected_course.time_end, course.time_start, course.time_end)) {
-      selected_course.days.forEach(day => {
+      for (const day of selected_course.days) {
         if (course.days.includes(day)) {
-          noconflict = false;
-          console.log("conflict with", course, day);
+          noConflict = false;
+          console.log("Time conflict with", course.course_name, "on", day);
         }
-      });
+      }
     }
   }
 
-  if (noconflict) {
-    console.log("All checks passed — ready for registration.");
+  if (!noConflict) {
+    alert("Time conflict with another course.");
+    return;
   }
+
+  if (!userInfo.current_courses.includes(selected_course.course_id)) {
+    userInfo.current_courses.push(selected_course.course_id);
+  }
+
+  const accounts = JSON.parse(localStorage.getItem("accounts"));
+  const username = userData.info.username;          // or destructure
+  const studentIndex = accounts.student.findIndex(
+    s => s.username === username
+  );
+    if (studentIndex !== -1) {
+    if (!accounts.student[studentIndex].current_courses.includes(selected_course.course_id)) {
+      accounts.student[studentIndex].current_courses.push(selected_course.course_id);
+    }
+  }
+  localStorage.setItem("accounts", JSON.stringify(accounts));
+
+  const courses = fetchCourses();
+  const courseIndex = courses.findIndex(c => c.course_id === selected_course.course_id);
+  if (courseIndex !== -1) {
+    courses[courseIndex].enrolled += 1;
+    if (!courses[courseIndex].students.includes(userData.username)) {
+      courses[courseIndex].students.push(userData.username);
+    }
+  }
+
+  localStorage.setItem("loggedUser", JSON.stringify(userData));
+  localStorage.setItem("courses", JSON.stringify(courses));
+
+  alert("✅ Successfully registered for " + selected_course.course_name);
+  checkSidebarAndLoad();
+  loadPage();
+}
+
+async function removeCourse() {
+  const userData = await getUserData();
+  const userInfo = userData.info;
+
+  if (!selected_course) {
+    alert("No course was selected.");
+    return;
+  }
+
+  if (!userInfo.current_courses.includes(selected_course.course_id)) {
+    alert("You aren't registered in this course.");
+    return;
+  }
+
+  const courseIndexToRemove = userInfo.current_courses.indexOf(selected_course.course_id);
+  userInfo.current_courses.splice(courseIndexToRemove, 1);
+
+  const accounts = JSON.parse(localStorage.getItem("accounts"));
+  const username = userData.info.username;          // or destructure
+  const studentIndex = accounts.student.findIndex(
+    s => s.username === username
+  );
+    if (studentIndex !== -1) {
+    const accountCourseIndex = accounts.student[studentIndex].current_courses.indexOf(selected_course.course_id);
+    if (accountCourseIndex !== -1) {
+      accounts.student[studentIndex].current_courses.splice(accountCourseIndex, 1);
+    }
+  }
+  localStorage.setItem("accounts", JSON.stringify(accounts));
+
+  const courses = fetchCourses();
+  const courseIndex = courses.findIndex(c => c.course_id === selected_course.course_id);
+  if (courseIndex !== -1) {
+    const studentPos = courses[courseIndex].students.indexOf(userData.username);
+    if (studentPos !== -1) {
+      courses[courseIndex].students.splice(studentPos, 1);
+      courses[courseIndex].enrolled = Math.max(0, courses[courseIndex].enrolled - 1);
+    }
+  }
+
+  localStorage.setItem("loggedUser", JSON.stringify(userData));
+  localStorage.setItem("courses", JSON.stringify(courses));
+
+  alert("✅ Successfully removed " + selected_course.course_name);
+  checkSidebarAndLoad();
+  loadPage();
 }
 
 async function loadLearningPath() {
@@ -257,7 +352,9 @@ async function loadLearningPath() {
       status: "cant_take"
     });
   });
+
   const container = document.getElementById("learning-path-course-cards");
+  container.innerHTML = "";
   learningPath.forEach(course => {
     const card = document.createElement("div");
     card.className = `course-card ${course.status}`;
@@ -270,13 +367,12 @@ async function loadLearningPath() {
       case "cant_take": icon = "❌"; break;
     }
 
-    if(course.status==="completed")
+    if (course.status === "completed")
       card.innerHTML = `<strong>${icon} ${course.title} |${course.grade} </strong>`;
-else{
-    card.innerHTML = `<strong>${icon} ${course.title}</strong>`;}
+    else
+      card.innerHTML = `<strong>${icon} ${course.title}</strong>`;
     container.appendChild(card);
-  }
-);
+  });
 }
 
 function checkSidebarAndLoad() {
@@ -287,6 +383,9 @@ function checkSidebarAndLoad() {
   }
 }
 
-window.addEventListener("load", checkSidebarAndLoad);
+window.addEventListener("load", async () => {
+  checkSidebarAndLoad();
+  await initializeLocalStorageIfNeeded();
+  await loadPage();
+});
 window.addEventListener("resize", checkSidebarAndLoad);
-loadPage();

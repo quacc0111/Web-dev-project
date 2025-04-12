@@ -190,7 +190,7 @@ async function loadLearningPath() {
   for (const courseID of userPastCourses) {
     const courseData = courseID;
     if (courseData) {
-      let gradestatus = "uncomplete";
+      let gradestatus = (courseData.grade.toUpperCase() === "F") ? "failed" : "completed";
       if (courseData.grade.toUpperCase() != "F") {
         gradestatus = "completed";
       }
@@ -261,6 +261,7 @@ async function loadLearningPath() {
   });
 
   const container = document.getElementById("learning-path-course-cards");
+  container.innerHTML = "";
 
   learningPath.forEach(course => {
     const card = document.createElement("div");
@@ -268,19 +269,13 @@ async function loadLearningPath() {
 
     let icon = "";
     switch (course.status) {
-      case "completed":
-        icon = "✔️";
-        break;
-      case "taking":
-        icon = "⏳";
-        break;
-      case "cantake":
-        icon = "➕";
-        break;
-      case "cant_take":
-        icon = "❌";
-        break;
+      case "completed": icon = "✔️"; break;
+      case "failed":    icon = "❌"; break;
+      case "taking":    icon = "⏳"; break;
+      case "cantake":   icon = "➕"; break;
+      case "cant_take": icon = "🚫"; break;
     }
+    
     if(course.status==="completed")
       card.innerHTML = `<strong>${icon} ${course.title} |${course.grade} </strong>`;
 else{

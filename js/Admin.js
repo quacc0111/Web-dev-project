@@ -2,6 +2,32 @@ const searchInput = document.getElementById("search-input");
 const searchButton = document.getElementById("search-button");
 const registerButton = document.getElementById("register_button");
 
+
+async function getCourses() {
+  const key = "courses";
+
+  const cached = localStorage.getItem(key);
+  if (cached) {
+    try {
+      return JSON.parse(cached);
+    } catch (err) {
+      console.warn("Corrupt courses cache – clearing and refetching.", err);
+      localStorage.removeItem(key);
+    }
+  }
+
+  const resp = await fetch("/json/courses.json");
+  if (!resp.ok) throw new Error("Failed to fetch courses.json");
+
+  const data = await resp.json();
+  localStorage.setItem(key, JSON.stringify(data));
+  return data;
+}
+
+function saveCourses(coursesArray) {
+  localStorage.setItem("courses", JSON.stringify(coursesArray));
+}
+
 let selected_course;
 
 searchButton.addEventListener("click", search);

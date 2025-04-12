@@ -1,8 +1,9 @@
 const searchInput = document.getElementById("search-input");
 const searchButton = document.getElementById("search-button");
-const registerButton = document.getElementById("register_button");
 
 let selected_course;
+
+
 
 searchButton.addEventListener("click", search);
 
@@ -10,6 +11,37 @@ function isWithinRange(start1, end1, start2, end2) {
   return start1 < end2 && start2 < end1;
 }
 
+/* =================================================================
+   PERSISTENCE HELPERS  (Instructor page)
+   -----------------------------------------------------------------
+   • All pages should use the SAME keys that seedStorage() created:
+       – "coursesData"      (array)
+       – "userAccounts"     (object with admin / instructor / student)
+   • These helpers hide JSON.parse / stringify and guarantee that
+     the data exists (because the login page already seeded it).
+   ================================================================= */
+
+/* ---------- COURSES ---------- */
+function getCourses() {
+  return JSON.parse(localStorage.getItem("coursesData") || "[]");
+}
+function saveCourses(updatedArray) {
+  localStorage.setItem("coursesData", JSON.stringify(updatedArray));
+}
+
+/* ---------- ACCOUNTS / STUDENTS ---------- */
+function getAccounts() {
+  return JSON.parse(localStorage.getItem("userAccounts") || "{}");
+}
+function saveAccounts(updatedObj) {
+  localStorage.setItem("userAccounts", JSON.stringify(updatedObj));
+}
+
+/* Convenience: grab a single student object by username */
+function getStudent(username) {
+  const accounts = getAccounts();
+  return (accounts.student || []).find(s => s.username === username);
+}
 
 async function fetchCourses() {
   const response = await fetch("/json/courses.json");
@@ -42,7 +74,7 @@ function createCourseCard(course) {
 async function loadPage() {
 
   const mainContent = document.getElementById("coursescards");
-  const courses = await fetchCourses();
+  const courses = await getCourses();
   const userData = await getUserData();
   const instructorid = userData.info.username;
 console.log(instructorid);
@@ -62,7 +94,7 @@ async function search(e) {
 
   const query = searchInput.value.trim().toLowerCase();
   const mainContent = document.getElementById("coursescards");
-  const courses = await fetchCourses();
+  const courses = await getCourses();
 
   mainContent.innerHTML = "";
 
@@ -107,11 +139,12 @@ async function getUserData() {
 }
 
 async function getCourseByID(course_id) {
-  const courses = await fetchCourses();
+  const courses = await getCourses();
   return courses.find(course => course.course_id === course_id);
 }
 
 
 
+console.log(getCourses());
 
 loadPage();
