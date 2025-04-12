@@ -12,7 +12,7 @@
   <nav>
     <ul>
       <li>
-        <img src="https://icon-library.com/images/guest-icon-png/guest-icon-png-18.jpg" alt=""id="img">
+        <img src="" alt="">(placeholder user img)
       </li>
       <li>Instructor Page</li>
 
@@ -30,6 +30,7 @@
         <input type="text" id="search-input" placeholder="Search..." />
         <button id="search-button" type="submit">Search</button>
       </div>
+      <!-- catagories -->
       <div class="course-metadata" id="catagories">
         <div class="course-name">Course</div>
         <div class="course-instructor">instructor</div>
@@ -43,6 +44,7 @@
 
       <div class="course-list">
         <div id="coursescards"></div>
+        <p></p>
       </div>
 
       <div class="bottom-bar">
@@ -52,6 +54,16 @@
       </div>
     </div>
   </main>
+
+  <!-- ******* -->
+  <div id="grades-modal" class="modal hidden" role="dialog" aria-labelledby="modal-course-name" aria-hidden="true">
+    <div class="modal-content">
+      <h2>Submit Grades for <span id="modal-course-name"></span></h2>
+      <div id="students-list"></div>
+      <button id="close-modal">Close</button>
+    </div>
+  </div>
+  <!-- ********* -->
 
   <script src="/js/Instructor.js"></script>
 </body>

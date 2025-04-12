@@ -1,3 +1,4 @@
+/* ─────────────── COLOR VARIABLES ─────────────── */
 :root {
     --color-primary-blue: #2563EB;
     --color-light-blue: #DBEAFE;
@@ -11,8 +12,10 @@
     --color-text-light: #FFFFFF;
 }
 
+/* ─────────────── GLOBAL STYLES ─────────────── */
 
 body {
+    /* background-image: url("https://thumbs.dreamstime.com/b/phone-wallpaper-website-red-background-pattern-book-cover-screen-printing-laptop-mobile-visiting-card-115052893.jpg"); */
     background-size: cover;
     background-repeat: repeat-y;
     background-position: center;
@@ -22,6 +25,7 @@ body {
     background-color: var(--color-primary-blue);
 }
 
+/* ─────────────── NAVIGATION BAR ─────────────── */
 
 nav {
     display: flex;
@@ -59,6 +63,7 @@ nav ul li:hover {
     transition: all 0.3s ease;
 }
 
+/* ─────────────── PAGE LAYOUT ─────────────── */
 
 .main-layout {
     display: grid;
@@ -82,6 +87,7 @@ nav ul li:hover {
     border-radius: 5px;
 }
 
+/* ─────────────── SEARCH BAR ─────────────── */
 
 .search-bar {
     margin: 1rem;
@@ -121,6 +127,7 @@ nav ul li:hover {
     transition: background-color 0.3s ease;
 }
 
+/* ─────────────── COURSE LIST / CARD ─────────────── */
 
 .course-list {
     display: flex;
@@ -164,10 +171,12 @@ nav ul li:hover {
     
 }
 
+/* ─────────────── BOTTOM BAR / BUTTONS ─────────────── */
 
 .bottom-bar {
     padding-right: 1rem;
     padding-left: 1rem;
+    padding-top: 1rem;
     margin-bottom: 1rem;
     display: flex;
     justify-content: center;
@@ -205,27 +214,55 @@ nav ul li:hover {
 #learning-path{
     display: none;
 }
-li #img{
+
+
+
+
+/* ─────────────── modal ***** ─────────────── */
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
-    width: 3rem;
-    
-  }
-  nav a {
-    color: white;
-    text-decoration: none;
+    align-items: center;
+    z-index: 1000;
   }
   
-  nav a:visited {
-    color: white;
+  .modal.hidden {
+    display: none;
   }
   
-  nav a:hover {
-    color: var(--color-soft-orange);
-    text-decoration: underline;
+  .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    max-width: 600px;
+  }
+
+  .submit-grades-button {
+    margin-top: 1rem;
+    padding: 10px 20px;
+    background-color: var(--color-primary-orange);
+    color: var(--color-text-light);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
   }
   
-  
+  .submit-grades-button:hover {
+    background-color: var(--color-soft-orange);
+    color: var(--color-text-dark);
+    transition: background-color 0.3s ease;
+  }
+
+/* ─────────────── RESPONSIVE STYLES ─────────────── */
 
 @media screen and (max-width: 500px) {
     nav{
