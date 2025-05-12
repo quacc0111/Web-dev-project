@@ -12,16 +12,16 @@
 }
 
 
-body {
+.login-page {
     display: flex;
     justify-content: center;
     background-size: cover;
-    background: url('i4.webp') no-repeat center center fixed;
     height: 100vh;
     background-position: center;
     background-color: var(--color-primary-blue);
-
+    /* background: url('/i4.webp') no-repeat center center fixed; */ /* optional */
 }
+
 
 .user-icon-div {
     margin-top: 1rem;
